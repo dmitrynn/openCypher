@@ -68,8 +68,8 @@ Feature: MiscellaneousErrorAcceptance
     When executing query:
       """
       MATCH (n)
-      RETURN n.prop1
-        ORDER BY max(n.prop2)
+      RETURN n.name1
+        ORDER BY max(n.name2)
       """
     Then a SyntaxError should be raised at compile time: InvalidAggregation
 
@@ -77,8 +77,8 @@ Feature: MiscellaneousErrorAcceptance
     When executing query:
       """
       MATCH (n)
-      WITH n.prop1 AS foo
-        ORDER BY max(n.prop2)
+      WITH n.name1 AS foo
+        ORDER BY max(n.name2)
       RETURN foo AS foo
       """
     Then a SyntaxError should be raised at compile time: InvalidAggregation
@@ -152,7 +152,7 @@ Feature: MiscellaneousErrorAcceptance
       """
       MATCH (n)
       MATCH (n)-[r*]->()
-      WHERE r.foo = 'apa'
+      WHERE r.name = 'apa'
       RETURN r
       """
     Then a SyntaxError should be raised at compile time: InvalidArgumentType
@@ -203,7 +203,7 @@ Feature: MiscellaneousErrorAcceptance
     When executing query:
       """
       CREATE (a)
-      SET a.foo = [{x: 1}]
+      SET a.listmap = [{num: 1}]
       """
     Then a TypeError should be raised at compile time: InvalidPropertyType
 

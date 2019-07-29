@@ -34,13 +34,13 @@ Feature: ReturnAcceptance2
     Given an empty graph
     And having executed:
       """
-      CREATE ({p: 0})
+      CREATE ({num: 0})
       """
     When executing query:
       """
       MATCH (n)
       DELETE n
-      RETURN n.p
+      RETURN n.num
       """
     Then a EntityNotFound should be raised at runtime: DeletedEntityAccess
 
@@ -260,7 +260,7 @@ Feature: ReturnAcceptance2
     Given an empty graph
     And having executed:
       """
-      CREATE ({foo: [1, 2, 3]})
+      CREATE ({numbers: [1, 2, 3]})
       """
     When executing query:
       """
@@ -268,23 +268,23 @@ Feature: ReturnAcceptance2
       RETURN n
       """
     Then the result should be:
-      | n                  |
-      | ({foo: [1, 2, 3]}) |
+      | n                      |
+      | ({numbers: [1, 2, 3]}) |
     And no side effects
 
   Scenario: Returning a projected map
     Given an empty graph
     And having executed:
       """
-      CREATE ({foo: [1, 2, 3]})
+      CREATE ({numbers: [1, 2, 3]})
       """
     When executing query:
       """
-      RETURN {a: 1, b: 'foo'}
+      RETURN {a: 1, b: 'numbers'}
       """
     Then the result should be:
-      | {a: 1, b: 'foo'} |
-      | {a: 1, b: 'foo'} |
+      | {a: 1, b: 'numbers'} |
+      | {a: 1, b: 'numbers'} |
     And no side effects
 
   Scenario: Returning an expression
@@ -456,12 +456,12 @@ Feature: ReturnAcceptance2
     Given an empty graph
     And having executed:
       """
-      CREATE ({a: [1, 2, 3]}), ({a: [1, 2, 3]})
+      CREATE ({numbers: [1, 2, 3]}), ({numbers: [1, 2, 3]})
       """
     When executing query:
       """
       MATCH (a)
-      WITH a.a AS a, count(*) AS count
+      WITH a.numbers AS a, count(*) AS count
       RETURN count
       """
     Then the result should be:

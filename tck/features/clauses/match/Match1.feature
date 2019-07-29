@@ -76,32 +76,32 @@ Feature: Match1 - Zero-length patterns
   Scenario: [4] Simple node property predicate
     And having executed:
       """
-      CREATE ({foo: 'bar'})
+      CREATE ({name: 'bar'})
       """
     When executing query:
       """
       MATCH (n)
-      WHERE n.foo = 'bar'
+      WHERE n.name = 'bar'
       RETURN n
       """
     Then the result should be:
-      | n              |
-      | ({foo: 'bar'}) |
+      | n               |
+      | ({name: 'bar'}) |
     And no side effects
 
   Scenario: [5] Returning a node property value
     And having executed:
       """
-      CREATE ({prop: 1})
+      CREATE ({num: 1})
       """
     When executing query:
       """
       MATCH (a)
-      RETURN a.prop
+      RETURN a.num
       """
     Then the result should be:
-      | a.prop |
-      | 1      |
+      | a.num |
+      | 1     |
     And no side effects
 
   Scenario: [6] Returning multiple node property values

@@ -98,8 +98,8 @@ Feature: Create1 - Creating nodes
     Given any graph
     When executing query:
       """
-      CREATE (n {prop: 'foo'})
-      RETURN n.prop AS p
+      CREATE (n {name: 'foo'})
+      RETURN n.name AS p
       """
     Then the result should be:
       | p     |
@@ -112,7 +112,7 @@ Feature: Create1 - Creating nodes
     Given any graph
     When executing query:
       """
-      CREATE (n {id: 12, prop: 'foo'})
+      CREATE (n {id: 12, name: 'foo'})
       """
     Then the result should be empty
     And the side effects should be:
@@ -123,8 +123,8 @@ Feature: Create1 - Creating nodes
     Given any graph
     When executing query:
       """
-      CREATE (n {id: 12, prop: 'foo'})
-      RETURN n.id AS id, n.prop AS p
+      CREATE (n {id: 12, name: 'foo'})
+      RETURN n.id AS id, n.name AS p
       """
     Then the result should be:
       | id | p     |
@@ -137,7 +137,7 @@ Feature: Create1 - Creating nodes
     Given any graph
     When executing query:
       """
-      CREATE (n {id: 12, prop: null})
+      CREATE (n {id: 12, name: null})
       RETURN n.id AS id
       """
     Then the result should be:

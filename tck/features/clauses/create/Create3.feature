@@ -99,7 +99,7 @@ Feature: Create3 - Interoperation with other clauses
     Given an empty graph
     And having executed:
       """
-      CREATE ({foo: 1})
+      CREATE ({num: 1})
       """
     When executing query:
       """
@@ -111,7 +111,7 @@ Feature: Create3 - Interoperation with other clauses
       """
     Then the result should be:
       | a          | b          |
-      | ({foo: 1}) | ({foo: 1}) |
+      | ({num: 1}) | ({num: 1}) |
     And the side effects should be:
       | +relationships | 1 |
 
@@ -139,7 +139,7 @@ Feature: Create3 - Interoperation with other clauses
     Given an empty graph
     And having executed:
       """
-      CREATE ({foo: 'A'})
+      CREATE ({name: 'A'})
       """
     When executing query:
       """
@@ -152,8 +152,8 @@ Feature: Create3 - Interoperation with other clauses
       RETURN x, y
       """
     Then the result should be:
-      | x            | y            |
-      | ({foo: 'A'}) | ({foo: 'A'}) |
+      | x             | y             |
+      | ({name: 'A'}) | ({name: 'A'}) |
     And the side effects should be:
       | +relationships | 2 |
 
@@ -161,7 +161,7 @@ Feature: Create3 - Interoperation with other clauses
     Given an empty graph
     And having executed:
       """
-      CREATE ({foo: 5})
+      CREATE ({name: 5})
       """
     When executing query:
       """
@@ -173,8 +173,8 @@ Feature: Create3 - Interoperation with other clauses
       RETURN x
       """
     Then the result should be:
-      | x          |
-      | ({foo: 5}) |
+      | x           |
+      | ({name: 5}) |
     And the side effects should be:
       | +nodes         | 2 |
       | +relationships | 2 |

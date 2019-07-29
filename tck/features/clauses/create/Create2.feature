@@ -180,7 +180,7 @@ Feature: Create2 - Creating relationships
     Given any graph
     When executing query:
       """
-      CREATE ()-[:R {prop: 'foo'}]->()
+      CREATE ()-[:R {name: 'foo'}]->()
       """
     Then the result should be empty
     And the side effects should be:
@@ -242,8 +242,8 @@ Feature: Create2 - Creating relationships
     Given any graph
     When executing query:
       """
-      CREATE ()-[r:R {prop: 'foo'}]->()
-      RETURN r.prop AS p
+      CREATE ()-[r:R {name: 'foo'}]->()
+      RETURN r.name AS p
       """
     Then the result should be:
       | p     |
@@ -257,7 +257,7 @@ Feature: Create2 - Creating relationships
     Given any graph
     When executing query:
       """
-      CREATE ()-[:R {id: 12, prop: 'foo'}]->()
+      CREATE ()-[:R {id: 12, name: 'foo'}]->()
       """
     Then the result should be empty
     And the side effects should be:
@@ -269,8 +269,8 @@ Feature: Create2 - Creating relationships
     Given any graph
     When executing query:
       """
-      CREATE ()-[r:R {id: 12, prop: 'foo'}]->()
-      RETURN r.id AS id, r.prop AS p
+      CREATE ()-[r:R {id: 12, name: 'foo'}]->()
+      RETURN r.id AS id, r.name AS p
       """
     Then the result should be:
       | id | p     |
@@ -284,7 +284,7 @@ Feature: Create2 - Creating relationships
     Given any graph
     When executing query:
       """
-      CREATE ()-[r:X {id: 12, property: null}]->()
+      CREATE ()-[r:X {id: 12, name: null}]->()
       RETURN r.id
       """
     Then the result should be:
